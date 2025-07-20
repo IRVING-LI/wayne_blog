@@ -10,7 +10,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: '李文龙的个人技术博客',
+  title: 'Wayne的个人技术博客',
   description: '分享技术见解、开发经验和学习心得的个人技术博客',
   openGraph: {
     images: [HOME_OG_IMAGE_URL],
@@ -48,7 +48,7 @@ export default function RootLayout({
           href="/favicon/safari-pinned-tab.svg"
           color="#000000"
         />
-        <link rel="shortcut icon" href="/favicon/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon/favicon.svg" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta
           name="msapplication-config"

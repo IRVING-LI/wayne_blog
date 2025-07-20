@@ -1,13 +1,13 @@
 ---
-title: "欢迎来到我的技术博客"
+title: "欢迎来到Wayne的技术博客"
 excerpt: "这里是我分享技术见解、开发经验和学习心得的空间。作为一名专注于全栈开发的工程师，我将通过这个平台与大家交流技术，共同成长。"
-coverImage: "/assets/blog/introduce/cover.png"
+coverImage: "/assets/blog/images/html.jpg"
 date: "2024-01-16T10:00:00.000Z"
 author:
   name: Wayne
   picture: "/assets/blog/authors/headPic.jpg"
 ogImage:
-  url: "/assets/blog/introduce/firstImg.jpg"
+  url: "/assets/blog/images/html.jpg"
 ---
 
 ## 关于我
@@ -32,13 +32,6 @@ ogImage:
 - 记录个人技术成长历程，促进自我提升
 - 与志同道合的朋友交流，共同进步
 - 探讨技术发展趋势，把握创新机遇
-
-## 联系方式
-
-我非常欢迎与大家交流技术话题，你可以通过以下方式找到我：
-
-- 邮箱: [2628751928@qq.com]
-- 微信号: [S1mple_Ea5y]
 
 ## 写在最后
 

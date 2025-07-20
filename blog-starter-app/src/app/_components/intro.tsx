@@ -7,7 +7,7 @@ export function Intro() {
         Blog.
       </h1>
       <h4 className="text-center md:text-left text-lg mt-5 md:pl-8">
-        李文龙的个人技术博客
+        Wayne的个人技术博客
       </h4>
     </section>
   );
