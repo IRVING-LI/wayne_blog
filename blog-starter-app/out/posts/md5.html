@@ -1,0 +1,163 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="preload" as="image" href="/assets/blog/authors/headPic.jpg"/><link rel="stylesheet" href="/_next/static/css/69151a66b11fb5e6.css" data-precedence="next"/><link rel="stylesheet" href="/_next/static/css/1a36663c02865c1c.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/webpack-06eec9c5fbe72c61.js"/><script src="/_next/static/chunks/4bd1b696-ede33411fbace919.js" async=""></script><script src="/_next/static/chunks/215-10e9bb4a4be531d8.js" async=""></script><script src="/_next/static/chunks/main-app-c8bdd731ca5869d7.js" async=""></script><script src="/_next/static/chunks/app/layout-5fe2071372afb89b.js" async=""></script><script src="/_next/static/chunks/30-5b16b16b6b426edb.js" async=""></script><script src="/_next/static/chunks/app/posts/%5Bslug%5D/page-eaae9ecd993fb547.js" async=""></script><link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png"/><link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png"/><link rel="manifest" href="/favicon/site.webmanifest"/><link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#000000"/><link rel="shortcut icon" href="/favicon/favicon.svg"/><meta name="msapplication-TileColor" content="#000000"/><meta name="msapplication-config" content="/favicon/browserconfig.xml"/><meta name="theme-color" content="#000"/><link rel="alternate" type="application/rss+xml" href="/feed.xml"/><title>使用MD5加密密码进行注册登录 | Next.js Blog Example with Markdown</title><meta name="description" content="分享技术见解、开发经验和学习心得的个人技术博客"/><meta property="og:title" content="使用MD5加密密码进行注册登录 | Next.js Blog Example with Markdown"/><meta property="og:description" content="分享技术见解、开发经验和学习心得的个人技术博客"/><meta property="og:image" content="http://localhost:3000/assets/blog/images/security.jpg"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:title" content="使用MD5加密密码进行注册登录 | Next.js Blog Example with Markdown"/><meta name="twitter:description" content="分享技术见解、开发经验和学习心得的个人技术博客"/><meta name="twitter:image" content="http://localhost:3000/assets/blog/images/security.jpg"/><script src="/_next/static/chunks/polyfills-42372ed130431b0a.js" noModule=""></script></head><body class="__className_e8ce0c dark:bg-slate-900 dark:text-slate-400"><div class="min-h-screen"><main><div class="border-b dark:bg-slate-800 bg-neutral-50 border-neutral-200"><div class="container mx-auto px-5"><div class="py-2 text-center text-sm"></div></div></div><div class="container mx-auto px-5"><h2 class="text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8 flex items-center"><a class="hover:underline" href="/">Blog</a>.</h2><article class="mb-32"><h1 class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left">使用MD5加密密码进行注册登录</h1><div class="hidden md:block md:mb-12"><div class="flex items-center"><img src="/assets/blog/authors/headPic.jpg" class="w-12 h-12 rounded-full mr-4" alt="Wayne"/><div class="text-xl font-bold">Wayne</div></div></div><div class="mb-8 md:mb-16 sm:mx-0"><div class="sm:mx-0"><img alt="Cover Image for 使用MD5加密密码进行注册登录" loading="lazy" width="1300" height="630" decoding="async" data-nimg="1" class="shadow-sm w-full" style="color:transparent" src="/assets/blog/images/security.jpg"/></div></div><div class="max-w-2xl mx-auto"><div class="block md:hidden mb-6"><div class="flex items-center"><img src="/assets/blog/authors/headPic.jpg" class="w-12 h-12 rounded-full mr-4" alt="Wayne"/><div class="text-xl font-bold">Wayne</div></div></div><div class="mb-6 text-lg"><time dateTime="2021-11-22T13:15:29.000Z">November	22, 2021</time></div></div><div class="max-w-2xl mx-auto"><div class="markdown-styles_markdown__ORfR8"><h3>前言</h3>
+<p>  本程序实现了利用MD5对密码进行加密并且进行简单注册和登录验证的功能，总体思路为：ResignServlet获取注册界面表单中用户名、密码、账号的值，调取底层用来连接数据库的SqlConnect和用来进行MD5加密的MD5对密码进行加密并且将用户名、密码、账号的值插入数据库当中。在登录界面输入账号密码之后，根据账号对数据库进行查询，返回查询到的数据，将其与用户输入密码加密后的值进行对比，如果相同，则进入登录成功界面；如果不相同，则进入登录失败界面，并在3秒后返回登录界面。</p>
+<h3>核心代码</h3>
+<h5>进行MD5加密的代码段</h5>
+<p><em>MD5.java</em></p>
+<pre><code class="language-java">package com.example.demo.utils;
+
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+public class MD5 {
+    public static String md5(String str) throws NoSuchAlgorithmException
+    {
+        MessageDigest md5 = MessageDigest.getInstance("MD5");
+        byte[] srcBytes = str.getBytes(StandardCharsets.UTF_8);
+        md5.update(srcBytes);
+        byte[] resultBytes = md5.digest();
+        return new String(resultBytes);
+    }
+}
+</code></pre>
+<h5>连接数据库的代码段</h5>
+<p><em>SqlConnect.java</em></p>
+<pre><code class="language-java">package com.example.demo.utils;
+
+import java.sql.*;
+
+public class SqlConnect {
+    private static final String DRIVER = "com.mysql.jdbc.Driver";
+    private static final String URL = "jdbc:mysql://localhost:3306/md5";
+    private static final String USER = "root";
+    private static final String PWD = "111111";
+    Connection conn = null;
+    public void insert(String sql){
+        try {
+            Class.forName(DRIVER);
+            conn = DriverManager.getConnection(URL,USER,PWD);
+            System.out.println("连接数据库...");
+
+            Statement stat = conn.createStatement();
+            stat.executeUpdate(sql);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+    public ResultSet select(String sql) throws SQLException, ClassNotFoundException {
+        // 注册 JDBC 驱动
+        Class.forName(DRIVER);
+        System.out.println("连接数据库...");
+        conn = DriverManager.getConnection(URL,USER,PWD);
+        Statement stat = conn.createStatement();
+        ResultSet rs = stat.executeQuery(sql);
+        return rs;
+    }
+}
+</code></pre>
+<h5>ResignServlet对注册界面的表单数据进行接收，并且将数据加密后插入数据库</h5>
+<p><em>ResignServlet.java</em></p>
+<pre><code class="language-java">package com.example.demo.servlets;
+
+import com.example.demo.utils.MD5;
+import com.example.demo.utils.SqlConnect;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+
+
+@WebServlet(name = "Servlet", value = "/Servlet")
+public class ResignServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("连接到servlet");
+        String pwd = request.getParameter("pwd");
+        String zh = request.getParameter("account");
+        String name = request.getParameter("name");
+        System.out.println("密码为"+pwd);
+        System.out.println("账号为"+zh);
+        System.out.println("用户名为"+name);
+
+        try {
+            String password = MD5.md5(pwd);
+            String sql = "INSERT INTO users(account,password,name)VALUES('"+zh+"','"+password+"','"+name+"');";
+            SqlConnect con = new SqlConnect();
+            con.insert(sql);
+            response.sendRedirect("/demo_war_exploded/login.jsp");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<h5>LoginServlet对登录界面进行数据接收，依据账号对数据库进行查询并返回结果，如果与用户输入密码加密后的值相同则进入登录成功处理，不然则进行登录失败处理</h5>
+<p><em>LoginServlet.java</em></p>
+<pre><code class="language-java">package com.example.demo.servlets;
+
+import com.example.demo.utils.MD5;
+import com.example.demo.utils.SqlConnect;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+@WebServlet(name = "LoginServlet", value = "/LoginServlet")
+public class LoginServlet extends HttpServlet {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        this.doPost(request,response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("account");
+        String pwd = request.getParameter("pwd");
+        try {
+            String password = MD5.md5(pwd);
+            String sql = "SELECT password FROM users WHERE account='"+name+"';";
+            SqlConnect con = new SqlConnect();
+            ResultSet rs = null;
+            rs = con.select(sql);
+            while (rs.next()){
+                if (rs.getString(1).equals(password)){
+                    System.out.println("密码正确！！！");
+                    response.sendRedirect("/demo_war_exploded/success.jsp");
+                }
+                else{
+                    System.out.println("密码错误！！！");
+                    response.sendRedirect("/demo_war_exploded/lose.jsp");
+                }
+            }
+
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+</code></pre>
+<h3>附：</h3>
+<p>数据库部分可以依照自己需求进行建表
+<a href="https://gitee.com/cant-catch-up-with-tomorrow/java-web-md5-login/tree/master/demo">源代码下载戳这里！</a></p>
+</div></div></article></div></main></div><footer class="bg-neutral-50 border-t border-neutral-200 dark:bg-slate-800"><div class="container mx-auto px-5"><div class="py-28 flex flex-col lg:flex-row items-center"><h3 class="text-4xl lg:text-[2.5rem] font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">© 2024 Wayne的个人技术博客</h3><div class="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2"><a href="mailto:2628751928@qq.com" class="mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0">商务合作</a></div></div></div></footer><script src="/_next/static/chunks/webpack-06eec9c5fbe72c61.js" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"3:\"$Sreact.fragment\"\n4:I[8126,[\"185\",\"static/chunks/app/layout-5fe2071372afb89b.js\"],\"ThemeSwitcher\"]\n5:I[9275,[],\"\"]\n6:I[1343,[],\"\"]\n8:I[3120,[],\"OutletBoundary\"]\na:I[3120,[],\"MetadataBoundary\"]\nc:I[3120,[],\"ViewportBoundary\"]\ne:I[6130,[],\"\"]\n1:HL[\"/_next/static/css/69151a66b11fb5e6.css\",\"style\"]\n2:HL[\"/_next/static/css/1a36663c02865c1c.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"b\":\"twRt75JQzfKVtM7zoBuM4\",\"p\":\"\",\"c\":[\"\",\"posts\",\"md5\"],\"i\":false,\"f\":[[[\"\",{\"children\":[\"posts\",{\"children\":[[\"slug\",\"md5\",\"d\"],{\"children\":[\"__PAGE__?{\\\"slug\\\":\\\"md5\\\"}\",{}]}]}]},\"$undefined\",\"$undefined\",true],[\"\",[\"$\",\"$3\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/69151a66b11fb5e6.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[[\"$\",\"head\",null,{\"children\":[[\"$\",\"link\",null,{\"rel\":\"apple-touch-icon\",\"sizes\":\"180x180\",\"href\":\"/favicon/apple-touch-icon.png\"}],[\"$\",\"link\",null,{\"rel\":\"icon\",\"type\":\"image/png\",\"sizes\":\"32x32\",\"href\":\"/favicon/favicon-32x32.png\"}],[\"$\",\"link\",null,{\"rel\":\"icon\",\"type\":\"image/png\",\"sizes\":\"16x16\",\"href\":\"/favicon/favicon-16x16.png\"}],[\"$\",\"link\",null,{\"rel\":\"manifest\",\"href\":\"/favicon/site.webmanifest\"}],[\"$\",\"link\",null,{\"rel\":\"mask-icon\",\"href\":\"/favicon/safari-pinned-tab.svg\",\"color\":\"#000000\"}],[\"$\",\"link\",null,{\"rel\":\"shortcut icon\",\"href\":\"/favicon/favicon.svg\"}],[\"$\",\"meta\",null,{\"name\":\"msapplication-TileColor\",\"content\":\"#000000\"}],[\"$\",\"meta\",null,{\"name\":\"msapplication-config\",\"content\":\"/favicon/browserconfig.xml\"}],[\"$\",\"meta\",null,{\"name\":\"theme-color\",\"content\":\"#000\"}],[\"$\",\"link\",null,{\"rel\":\"alternate\",\"type\":\"application/rss+xml\",\"href\":\"/feed.xml\"}]]}],[\"$\",\"body\",null,{\"className\":\"__className_e8ce0c dark:bg-slate-900 dark:text-slate-400\",\"children\":[[\"$\",\"$L4\",null,{}],[\"$\",\"div\",null,{\"className\":\"min-h-screen\",\"children\":[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":\"404\"}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],\"notFoundStyles\":[]}]}],[\"$\",\"footer\",null,{\"className\":\"bg-neutral-50 border-t border-neutral-200 dark:bg-slate-800\",\"children\":[\"$\",\"div\",null,{\"className\":\"container mx-auto px-5\",\"children\":[\"$\",\"div\",null,{\"className\":\"py-28 flex flex-col lg:flex-row items-center\",\"children\":[[\"$\",\"h3\",null,{\"className\":\"text-4xl lg:text-[2.5rem] font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2\",\"children\":\"© 2024 Wayne的个人技术博客\"}],[\"$\",\"div\",null,{\"className\":\"flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2\",\"children\":[\"$\",\"a\",null,{\"href\":\"mailto:2628751928@qq.com\",\"className\":\"mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0\",\"children\":\"商务合作\"}]}]]}]}]}]]}]]}]]}],{\"children\":[\"posts\",[\"$\",\"$3\",\"c\",{\"children\":[null,[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"posts\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\"}]]}],{\"children\":[[\"slug\",\"md5\",\"d\"],[\"$\",\"$3\",\"c\",{\"children\":[null,[\"$\",\"$L5\",null,{\"parallelRouterKey\":\"children\",\"segmentPath\":[\"children\",\"posts\",\"children\",\"$0:f:0:1:2:children:2:children:0\",\"children\"],\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L6\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"notFoundStyles\":\"$undefined\"}]]}],{\"children\":[\"__PAGE__\",[\"$\",\"$3\",\"c\",{\"children\":[\"$L7\",[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/1a36663c02865c1c.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],[\"$\",\"$L8\",null,{\"children\":\"$L9\"}]]}],{},null]},null]},null]},null],[\"$\",\"$3\",\"h\",{\"children\":[null,[\"$\",\"$3\",\"FtBE53mUUm4kuE2MtSzWR\",{\"children\":[[\"$\",\"$La\",null,{\"children\":\"$Lb\"}],[\"$\",\"$Lc\",null,{\"children\":\"$Ld\"}],null]}]]}]]],\"m\":\"$undefined\",\"G\":[\"$e\",\"$undefined\"],\"s\":false,\"S\":true}\n"])</script><script>self.__next_f.push([1,"f:I[231,[\"30\",\"static/chunks/30-5b16b16b6b426edb.js\",\"333\",\"static/chunks/app/posts/%5Bslug%5D/page-eaae9ecd993fb547.js\"],\"\"]\n10:I[8173,[\"30\",\"static/chunks/30-5b16b16b6b426edb.js\",\"333\",\"static/chunks/app/posts/%5Bslug%5D/page-eaae9ecd993fb547.js\"],\"Image\"]\n11:T1b22,"])</script><script>self.__next_f.push([1,"\u003ch3\u003e前言\u003c/h3\u003e\n\u003cp\u003e  本程序实现了利用MD5对密码进行加密并且进行简单注册和登录验证的功能，总体思路为：ResignServlet获取注册界面表单中用户名、密码、账号的值，调取底层用来连接数据库的SqlConnect和用来进行MD5加密的MD5对密码进行加密并且将用户名、密码、账号的值插入数据库当中。在登录界面输入账号密码之后，根据账号对数据库进行查询，返回查询到的数据，将其与用户输入密码加密后的值进行对比，如果相同，则进入登录成功界面；如果不相同，则进入登录失败界面，并在3秒后返回登录界面。\u003c/p\u003e\n\u003ch3\u003e核心代码\u003c/h3\u003e\n\u003ch5\u003e进行MD5加密的代码段\u003c/h5\u003e\n\u003cp\u003e\u003cem\u003eMD5.java\u003c/em\u003e\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-java\"\u003epackage com.example.demo.utils;\r\n\r\nimport java.nio.charset.StandardCharsets;\r\nimport java.security.MessageDigest;\r\nimport java.security.NoSuchAlgorithmException;\r\n\r\npublic class MD5 {\r\n    public static String md5(String str) throws NoSuchAlgorithmException\r\n    {\r\n        MessageDigest md5 = MessageDigest.getInstance(\"MD5\");\r\n        byte[] srcBytes = str.getBytes(StandardCharsets.UTF_8);\r\n        md5.update(srcBytes);\r\n        byte[] resultBytes = md5.digest();\r\n        return new String(resultBytes);\r\n    }\r\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch5\u003e连接数据库的代码段\u003c/h5\u003e\n\u003cp\u003e\u003cem\u003eSqlConnect.java\u003c/em\u003e\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-java\"\u003epackage com.example.demo.utils;\r\n\r\nimport java.sql.*;\r\n\r\npublic class SqlConnect {\r\n    private static final String DRIVER = \"com.mysql.jdbc.Driver\";\r\n    private static final String URL = \"jdbc:mysql://localhost:3306/md5\";\r\n    private static final String USER = \"root\";\r\n    private static final String PWD = \"111111\";\r\n    Connection conn = null;\r\n    public void insert(String sql){\r\n        try {\r\n            Class.forName(DRIVER);\r\n            conn = DriverManager.getConnection(URL,USER,PWD);\r\n            System.out.println(\"连接数据库...\");\r\n\r\n            Statement stat = conn.createStatement();\r\n            stat.executeUpdate(sql);\r\n        } catch (SQLException throwables) {\r\n            throwables.printStackTrace();\r\n        }catch (ClassNotFoundException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n    public ResultSet select(String sql) throws SQLException, ClassNotFoundException {\r\n        // 注册 JDBC 驱动\r\n        Class.forName(DRIVER);\r\n        System.out.println(\"连接数据库...\");\r\n        conn = DriverManager.getConnection(URL,USER,PWD);\r\n        Statement stat = conn.createStatement();\r\n        ResultSet rs = stat.executeQuery(sql);\r\n        return rs;\r\n    }\r\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch5\u003eResignServlet对注册界面的表单数据进行接收，并且将数据加密后插入数据库\u003c/h5\u003e\n\u003cp\u003e\u003cem\u003eResignServlet.java\u003c/em\u003e\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-java\"\u003epackage com.example.demo.servlets;\r\n\r\nimport com.example.demo.utils.MD5;\r\nimport com.example.demo.utils.SqlConnect;\r\nimport javax.servlet.ServletException;\r\nimport javax.servlet.annotation.WebServlet;\r\nimport javax.servlet.http.HttpServlet;\r\nimport javax.servlet.http.HttpServletRequest;\r\nimport javax.servlet.http.HttpServletResponse;\r\nimport java.io.IOException;\r\nimport java.security.NoSuchAlgorithmException;\r\n\r\n\r\n@WebServlet(name = \"Servlet\", value = \"/Servlet\")\r\npublic class ResignServlet extends HttpServlet {\r\n    @Override\r\n    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\r\n\r\n    }\r\n\r\n    @Override\r\n    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\r\n        System.out.println(\"连接到servlet\");\r\n        String pwd = request.getParameter(\"pwd\");\r\n        String zh = request.getParameter(\"account\");\r\n        String name = request.getParameter(\"name\");\r\n        System.out.println(\"密码为\"+pwd);\r\n        System.out.println(\"账号为\"+zh);\r\n        System.out.println(\"用户名为\"+name);\r\n\r\n        try {\r\n            String password = MD5.md5(pwd);\r\n            String sql = \"INSERT INTO users(account,password,name)VALUES('\"+zh+\"','\"+password+\"','\"+name+\"');\";\r\n            SqlConnect con = new SqlConnect();\r\n            con.insert(sql);\r\n            response.sendRedirect(\"/demo_war_exploded/login.jsp\");\r\n        } catch (NoSuchAlgorithmException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch5\u003eLoginServlet对登录界面进行数据接收，依据账号对数据库进行查询并返回结果，如果与用户输入密码加密后的值相同则进入登录成功处理，不然则进行登录失败处理\u003c/h5\u003e\n\u003cp\u003e\u003cem\u003eLoginServlet.java\u003c/em\u003e\u003c/p\u003e\n\u003cpre\u003e\u003ccode class=\"language-java\"\u003epackage com.example.demo.servlets;\r\n\r\nimport com.example.demo.utils.MD5;\r\nimport com.example.demo.utils.SqlConnect;\r\n\r\nimport javax.servlet.ServletException;\r\nimport javax.servlet.annotation.WebServlet;\r\nimport javax.servlet.http.HttpServlet;\r\nimport javax.servlet.http.HttpServletRequest;\r\nimport javax.servlet.http.HttpServletResponse;\r\nimport java.io.IOException;\r\nimport java.security.NoSuchAlgorithmException;\r\nimport java.sql.ResultSet;\r\nimport java.sql.SQLException;\r\n\r\n@WebServlet(name = \"LoginServlet\", value = \"/LoginServlet\")\r\npublic class LoginServlet extends HttpServlet {\r\n    @Override\r\n    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\r\n        this.doPost(request,response);\r\n    }\r\n\r\n    @Override\r\n    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {\r\n        String name = request.getParameter(\"account\");\r\n        String pwd = request.getParameter(\"pwd\");\r\n        try {\r\n            String password = MD5.md5(pwd);\r\n            String sql = \"SELECT password FROM users WHERE account='\"+name+\"';\";\r\n            SqlConnect con = new SqlConnect();\r\n            ResultSet rs = null;\r\n            rs = con.select(sql);\r\n            while (rs.next()){\r\n                if (rs.getString(1).equals(password)){\r\n                    System.out.println(\"密码正确！！！\");\r\n                    response.sendRedirect(\"/demo_war_exploded/success.jsp\");\r\n                }\r\n                else{\r\n                    System.out.println(\"密码错误！！！\");\r\n                    response.sendRedirect(\"/demo_war_exploded/lose.jsp\");\r\n                }\r\n            }\r\n\r\n        } catch (NoSuchAlgorithmException e) {\r\n            e.printStackTrace();\r\n        }\r\n        catch (SQLException throwables) {\r\n            throwables.printStackTrace();\r\n        }catch (ClassNotFoundException e) {\r\n            e.printStackTrace();\r\n        }\r\n    }\r\n}\n\u003c/code\u003e\u003c/pre\u003e\n\u003ch3\u003e附：\u003c/h3\u003e\n\u003cp\u003e数据库部分可以依照自己需求进行建表\r\n\u003ca href=\"https://gitee.com/cant-catch-up-with-tomorrow/java-web-md5-login/tree/master/demo\"\u003e源代码下载戳这里！\u003c/a\u003e\u003c/p\u003e\n"])</script><script>self.__next_f.push([1,"7:[\"$\",\"main\",null,{\"children\":[[\"$\",\"div\",null,{\"className\":\"border-b dark:bg-slate-800 bg-neutral-50 border-neutral-200\",\"children\":[\"$\",\"div\",null,{\"className\":\"container mx-auto px-5\",\"children\":[\"$\",\"div\",null,{\"className\":\"py-2 text-center text-sm\",\"children\":\"$undefined\"}]}]}],[\"$\",\"div\",null,{\"className\":\"container mx-auto px-5\",\"children\":[[\"$\",\"h2\",null,{\"className\":\"text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8 flex items-center\",\"children\":[[\"$\",\"$Lf\",null,{\"href\":\"/\",\"className\":\"hover:underline\",\"children\":\"Blog\"}],\".\"]}],[\"$\",\"article\",null,{\"className\":\"mb-32\",\"children\":[[[\"$\",\"h1\",null,{\"className\":\"text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left\",\"children\":\"使用MD5加密密码进行注册登录\"}],[\"$\",\"div\",null,{\"className\":\"hidden md:block md:mb-12\",\"children\":[\"$\",\"div\",null,{\"className\":\"flex items-center\",\"children\":[[\"$\",\"img\",null,{\"src\":\"/assets/blog/authors/headPic.jpg\",\"className\":\"w-12 h-12 rounded-full mr-4\",\"alt\":\"Wayne\"}],[\"$\",\"div\",null,{\"className\":\"text-xl font-bold\",\"children\":\"Wayne\"}]]}]}],[\"$\",\"div\",null,{\"className\":\"mb-8 md:mb-16 sm:mx-0\",\"children\":[\"$\",\"div\",null,{\"className\":\"sm:mx-0\",\"children\":[\"$\",\"$L10\",null,{\"src\":\"/assets/blog/images/security.jpg\",\"alt\":\"Cover Image for 使用MD5加密密码进行注册登录\",\"className\":\"shadow-sm w-full\",\"width\":1300,\"height\":630}]}]}],[\"$\",\"div\",null,{\"className\":\"max-w-2xl mx-auto\",\"children\":[[\"$\",\"div\",null,{\"className\":\"block md:hidden mb-6\",\"children\":[\"$\",\"div\",null,{\"className\":\"flex items-center\",\"children\":[[\"$\",\"img\",null,{\"src\":\"/assets/blog/authors/headPic.jpg\",\"className\":\"w-12 h-12 rounded-full mr-4\",\"alt\":\"Wayne\"}],[\"$\",\"div\",null,{\"className\":\"text-xl font-bold\",\"children\":\"Wayne\"}]]}]}],[\"$\",\"div\",null,{\"className\":\"mb-6 text-lg\",\"children\":[\"$\",\"time\",null,{\"dateTime\":\"2021-11-22T13:15:29.000Z\",\"children\":\"November\\t22, 2021\"}]}]]}]],[\"$\",\"div\",null,{\"className\":\"max-w-2xl mx-auto\",\"children\":[\"$\",\"div\",null,{\"className\":\"markdown-styles_markdown__ORfR8\",\"dangerouslySetInnerHTML\":{\"__html\":\"$11\"}}]}]]}]]}]]}]\n"])</script><script>self.__next_f.push([1,"d:[[\"$\",\"meta\",\"0\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n"])</script><script>self.__next_f.push([1,"b:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"title\",\"1\",{\"children\":\"使用MD5加密密码进行注册登录 | Next.js Blog Example with Markdown\"}],[\"$\",\"meta\",\"2\",{\"name\":\"description\",\"content\":\"分享技术见解、开发经验和学习心得的个人技术博客\"}],[\"$\",\"meta\",\"3\",{\"property\":\"og:title\",\"content\":\"使用MD5加密密码进行注册登录 | Next.js Blog Example with Markdown\"}],[\"$\",\"meta\",\"4\",{\"property\":\"og:description\",\"content\":\"分享技术见解、开发经验和学习心得的个人技术博客\"}],[\"$\",\"meta\",\"5\",{\"property\":\"og:image\",\"content\":\"http://localhost:3000/assets/blog/images/security.jpg\"}],[\"$\",\"meta\",\"6\",{\"name\":\"twitter:card\",\"content\":\"summary_large_image\"}],[\"$\",\"meta\",\"7\",{\"name\":\"twitter:title\",\"content\":\"使用MD5加密密码进行注册登录 | Next.js Blog Example with Markdown\"}],[\"$\",\"meta\",\"8\",{\"name\":\"twitter:description\",\"content\":\"分享技术见解、开发经验和学习心得的个人技术博客\"}],[\"$\",\"meta\",\"9\",{\"name\":\"twitter:image\",\"content\":\"http://localhost:3000/assets/blog/images/security.jpg\"}]]\n"])</script><script>self.__next_f.push([1,"9:null\n"])</script></body></html>
