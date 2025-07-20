@@ -1,0 +1,155 @@
+3:"$Sreact.fragment"
+4:I[8126,["185","static/chunks/app/layout-5fe2071372afb89b.js"],"ThemeSwitcher"]
+5:I[9275,[],""]
+6:I[1343,[],""]
+8:I[3120,[],"OutletBoundary"]
+a:I[3120,[],"MetadataBoundary"]
+c:I[3120,[],"ViewportBoundary"]
+e:I[6130,[],""]
+1:HL["/_next/static/css/69151a66b11fb5e6.css","style"]
+2:HL["/_next/static/css/1a36663c02865c1c.css","style"]
+0:{"P":null,"b":"C17E9TvrEE567lDWa58ZR","p":"","c":["","posts","markdown"],"i":false,"f":[[["",{"children":["posts",{"children":[["slug","markdown","d"],{"children":["__PAGE__?{\"slug\":\"markdown\"}",{}]}]}]},"$undefined","$undefined",true],["",["$","$3","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/69151a66b11fb5e6.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":[["$","head",null,{"children":[["$","link",null,{"rel":"apple-touch-icon","sizes":"180x180","href":"/favicon/apple-touch-icon.png"}],["$","link",null,{"rel":"icon","type":"image/png","sizes":"32x32","href":"/favicon/favicon-32x32.png"}],["$","link",null,{"rel":"icon","type":"image/png","sizes":"16x16","href":"/favicon/favicon-16x16.png"}],["$","link",null,{"rel":"manifest","href":"/favicon/site.webmanifest"}],["$","link",null,{"rel":"mask-icon","href":"/favicon/safari-pinned-tab.svg","color":"#000000"}],["$","link",null,{"rel":"shortcut icon","href":"/favicon/favicon.svg"}],["$","meta",null,{"name":"msapplication-TileColor","content":"#000000"}],["$","meta",null,{"name":"msapplication-config","content":"/favicon/browserconfig.xml"}],["$","meta",null,{"name":"theme-color","content":"#000"}],["$","link",null,{"rel":"alternate","type":"application/rss+xml","href":"/feed.xml"}]]}],["$","body",null,{"className":"__className_e8ce0c dark:bg-slate-900 dark:text-slate-400","children":[["$","$L4",null,{}],["$","div",null,{"className":"min-h-screen","children":["$","$L5",null,{"parallelRouterKey":"children","segmentPath":["children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":"404"}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],"notFoundStyles":[]}]}],["$","footer",null,{"className":"bg-neutral-50 border-t border-neutral-200 dark:bg-slate-800","children":["$","div",null,{"className":"container mx-auto px-5","children":["$","div",null,{"className":"py-28 flex flex-col lg:flex-row items-center","children":[["$","h3",null,{"className":"text-4xl lg:text-[2.5rem] font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2","children":"© 2024 Wayne的个人技术博客"}],["$","div",null,{"className":"flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2","children":["$","a",null,{"href":"mailto:2628751928@qq.com","className":"mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0","children":"商务合作"}]}]]}]}]}]]}]]}]]}],{"children":["posts",["$","$3","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","segmentPath":["children","posts","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]]}],{"children":[["slug","markdown","d"],["$","$3","c",{"children":[null,["$","$L5",null,{"parallelRouterKey":"children","segmentPath":["children","posts","children","$0:f:0:1:2:children:2:children:0","children"],"error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L6",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","notFoundStyles":"$undefined"}]]}],{"children":["__PAGE__",["$","$3","c",{"children":["$L7",[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/1a36663c02865c1c.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","$L8",null,{"children":"$L9"}]]}],{},null]},null]},null]},null],["$","$3","h",{"children":[null,["$","$3","uaSeI7f8Y6fIze3VyqslU",{"children":[["$","$La",null,{"children":"$Lb"}],["$","$Lc",null,{"children":"$Ld"}],null]}]]}]]],"m":"$undefined","G":["$e","$undefined"],"s":false,"S":true}
+f:I[231,["30","static/chunks/30-5b16b16b6b426edb.js","333","static/chunks/app/posts/%5Bslug%5D/page-eaae9ecd993fb547.js"],""]
+10:I[8173,["30","static/chunks/30-5b16b16b6b426edb.js","333","static/chunks/app/posts/%5Bslug%5D/page-eaae9ecd993fb547.js"],"Image"]
+11:T1531,<h2>什么是Markdown？</h2>
+<p>Markdown 是一种轻量级的标记语言，设计用来格式化纯文本。它的语法简单易学，便于快速编写格式化文本，特别适用于博客、技术文档、代码注释等场景。最重要的是，Markdown 文本在转换为 HTML 后，可以保持清晰简洁的结构和易读性。</p>
+<p>Markdown 在很多平台中被广泛支持，如 GitHub、Gitee、博客平台等。接下来，我们将详细介绍 Markdown 的基本语法。</p>
+<h2>1. 标题</h2>
+<p>在 Markdown 中，标题通过在文本前加上 <code>#</code> 来定义。<code>#</code> 的个数决定了标题的级别（1 到 6 级标题）。</p>
+<h4>例子：</h4>
+<pre><code class="language-markdown"># 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+</code></pre>
+<h4>渲染效果：</h4>
+<h1>一级标题</h1>
+<h2>二级标题</h2>
+<h3>三级标题</h3>
+<h4>四级标题</h4>
+<h5>五级标题</h5>
+<h6>六级标题</h6>
+<h2>2. 段落和换行</h2>
+<p>Markdown 中的段落通过空行进行分隔。要换行，只需要在行尾加上两个空格后按 <code>Enter</code> 键。</p>
+<h4>例子：</h4>
+<pre><code class="language-markdown">这是第一段。
+
+这是第二段，换行时需要在行尾添加两个空格。  
+这是第二段的后半部分，接在第一行之后。
+</code></pre>
+<h4>渲染效果：</h4>
+<p>这是第一段。</p>
+<p>这是第二段，换行时需要在行尾添加两个空格。
+这是第二段的后半部分，接在第一行之后。</p>
+<h2>3. 强调文本</h2>
+<p>可以使用 <code>*</code> 或 <code>_</code> 来强调文本，使其变为 <strong>斜体</strong> 或 <strong>加粗</strong>。</p>
+<ul>
+<li><strong>斜体</strong>：用单个 <code>*</code> 或 <code>_</code> 包裹文本</li>
+<li><strong>加粗</strong>：用两个 <code>**</code> 或 <code>__</code> 包裹文本</li>
+</ul>
+<h4>例子：</h4>
+<pre><code class="language-markdown">*斜体文本* 或 _斜体文本_
+**加粗文本** 或 __加粗文本__
+</code></pre>
+<h4>渲染效果：</h4>
+<p><em>斜体文本</em> 或 <em>斜体文本</em>
+<strong>加粗文本</strong> 或 <strong>加粗文本</strong></p>
+<h2>4. 列表</h2>
+<p>Markdown 支持有序列表和无序列表。</p>
+<h3>无序列表</h3>
+<p>使用 <code>-</code>、<code>*</code> 或 <code>+</code> 来创建无序列表。</p>
+<h4>例子：</h4>
+<pre><code class="language-markdown">- 项目一
+- 项目二
+- 项目三
+</code></pre>
+<h4>渲染效果：</h4>
+<ul>
+<li>项目一</li>
+<li>项目二</li>
+<li>项目三</li>
+</ul>
+<h3>有序列表</h3>
+<p>使用数字和点（例如 <code>1.</code>）来创建有序列表。</p>
+<h4>例子：</h4>
+<pre><code class="language-markdown">1. 第一步
+2. 第二步
+3. 第三步
+</code></pre>
+<h4>渲染效果：</h4>
+<ol>
+<li>第一步</li>
+<li>第二步</li>
+<li>第三步</li>
+</ol>
+<h2>5. 链接和图片</h2>
+<h3>链接</h3>
+<p>创建链接的语法为 <code>[链接文本](链接地址)</code>。</p>
+<h4>例子：</h4>
+<pre><code class="language-markdown">[Google](https://www.google.com)
+</code></pre>
+<h4>渲染效果：</h4>
+<p><a href="https://www.google.com">Google</a></p>
+<h3>图片</h3>
+<p>插入图片的语法与链接类似，但前面加上一个 <code>!</code> 符号。</p>
+<h4>例子：</h4>
+<pre><code class="language-markdown">![图片描述](图片地址)
+</code></pre>
+<h4>渲染效果：</h4>
+<p><img src="https://example.com/image.jpg" alt="图片描述"></p>
+<h2>6. 引用</h2>
+<p>Markdown 中的引用使用 <code>></code> 来表示。</p>
+<h4>例子：</h4>
+<pre><code class="language-markdown">> 这是一个引用块。
+</code></pre>
+<h4>渲染效果：</h4>
+<blockquote>
+<p>这是一个引用块。</p>
+</blockquote>
+<h2>7. 代码</h2>
+<h3>行内代码</h3>
+<p>行内代码使用单个反引号（<code>`</code>）包裹。</p>
+<h4>例子：</h4>
+<pre><code class="language-markdown">这是 `行内代码` 示例。
+</code></pre>
+<h4>渲染效果：</h4>
+<p>这是 <code>行内代码</code> 示例。</p>
+<h3>代码块</h3>
+<p>代码块使用三个反引号（```）或者缩进四个空格来标识。你还可以指定代码语言以进行高亮显示。</p>
+<h4>例子：</h4>
+<pre><code class="language-markdown">```javascript
+console.log("Hello, world!");
+</code></pre>
+<pre><code>
+#### 渲染效果：
+```javascript
+console.log("Hello, world!");
+</code></pre>
+<h2>8. 水平线</h2>
+<p>水平线可以通过三个或更多的 <code>-</code>、<code>*</code> 或 <code>_</code> 来创建。</p>
+<h4>例子：</h4>
+<pre><code class="language-markdown">---
+</code></pre>
+<h4>渲染效果：</h4>
+<hr>
+<h2>9. 表格</h2>
+<p>Markdown 支持表格，表格通过 <code>|</code> 来分隔列，<code>-</code> 来分隔表头和内容。</p>
+<h4>例子：</h4>
+<pre><code class="language-markdown">| 姓名 | 年龄 | 职业 |
+| ---- | ---- | ---- |
+| Wayne | 28   | 开发工程师 |
+| Tom   | 25   | 设计师 |
+</code></pre>
+<h4>渲染效果：</h4>
+<p>| 姓名    | 年龄 | 职业    |
+| ----- | -- | ----- |
+| Wayne | 28 | 开发工程师 |
+| Tom   | 25 | 设计师   |</p>
+<h2>总结</h2>
+<p>Markdown 是一种轻量级的标记语言，它可以让我们用简单的语法格式化文本，帮助我们编写清晰、结构化的文档。掌握 Markdown 的基本语法后，我们可以轻松创建博客、技术文档、注释等内容。</p>
+7:["$","main",null,{"children":[["$","div",null,{"className":"border-b dark:bg-slate-800 bg-neutral-50 border-neutral-200","children":["$","div",null,{"className":"container mx-auto px-5","children":["$","div",null,{"className":"py-2 text-center text-sm","children":"$undefined"}]}]}],["$","div",null,{"className":"container mx-auto px-5","children":[["$","h2",null,{"className":"text-2xl md:text-4xl font-bold tracking-tight md:tracking-tighter leading-tight mb-20 mt-8 flex items-center","children":[["$","$Lf",null,{"href":"/","className":"hover:underline","children":"Blog"}],"."]}],["$","article",null,{"className":"mb-32","children":[[["$","h1",null,{"className":"text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter leading-tight md:leading-none mb-12 text-center md:text-left","children":"Markdown语法详解"}],["$","div",null,{"className":"hidden md:block md:mb-12","children":["$","div",null,{"className":"flex items-center","children":[["$","img",null,{"src":"/assets/blog/authors/headPic.jpg","className":"w-12 h-12 rounded-full mr-4","alt":"Wayne"}],["$","div",null,{"className":"text-xl font-bold","children":"Wayne"}]]}]}],["$","div",null,{"className":"mb-8 md:mb-16 sm:mx-0","children":["$","div",null,{"className":"sm:mx-0","children":["$","$L10",null,{"src":"/assets/blog/images/markdown.jpg","alt":"Cover Image for Markdown语法详解","className":"shadow-sm w-full","width":1300,"height":630}]}]}],["$","div",null,{"className":"max-w-2xl mx-auto","children":[["$","div",null,{"className":"block md:hidden mb-6","children":["$","div",null,{"className":"flex items-center","children":[["$","img",null,{"src":"/assets/blog/authors/headPic.jpg","className":"w-12 h-12 rounded-full mr-4","alt":"Wayne"}],["$","div",null,{"className":"text-xl font-bold","children":"Wayne"}]]}]}],["$","div",null,{"className":"mb-6 text-lg","children":["$","time",null,{"dateTime":"2021-11-22T13:15:29.000Z","children":"November\t22, 2021"}]}]]}]],["$","div",null,{"className":"max-w-2xl mx-auto","children":["$","div",null,{"className":"markdown-styles_markdown__ORfR8","dangerouslySetInnerHTML":{"__html":"$11"}}]}]]}]]}]]}]
+d:[["$","meta","0",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+b:[["$","meta","0",{"charSet":"utf-8"}],["$","title","1",{"children":"Markdown语法详解 | Next.js Blog Example with Markdown"}],["$","meta","2",{"name":"description","content":"分享技术见解、开发经验和学习心得的个人技术博客"}],["$","meta","3",{"property":"og:title","content":"Markdown语法详解 | Next.js Blog Example with Markdown"}],["$","meta","4",{"property":"og:description","content":"分享技术见解、开发经验和学习心得的个人技术博客"}],["$","meta","5",{"property":"og:image","content":"http://localhost:3000/assets/blog/images/markdown.jpg"}],["$","meta","6",{"name":"twitter:card","content":"summary_large_image"}],["$","meta","7",{"name":"twitter:title","content":"Markdown语法详解 | Next.js Blog Example with Markdown"}],["$","meta","8",{"name":"twitter:description","content":"分享技术见解、开发经验和学习心得的个人技术博客"}],["$","meta","9",{"name":"twitter:image","content":"http://localhost:3000/assets/blog/images/markdown.jpg"}]]
+9:null

@@ -18,9 +18,8 @@ ogImage:
 # 问题描述：
 
 装好了jupyter notebook后我兴致冲冲地想去写大作业，结果刚新建了个文件就弹出了如下对话框：
-![在使用 jupyter notebook打开项目文件报错](/assets/blog/images/problem1.png)啊~~ 美好的一天从bug开始
-
-
+![在使用 jupyter notebook打开项目文件报错](/assets/blog/images/problem1.png)
+啊~~ 美好的一天从bug开始
 
 =====
 
@@ -32,4 +31,4 @@ ogImage:
 
 # 解决方案：
 
-&emsp;&emsp;翻看了一圈类似问题的解决方案，决定==删除D:Anaconda\ibrarnybin\pythoncom38.dll文件==，再次打开jupyter notebook，一切正常。建议==大家先将文件放到回收站==里，防止删除后还是出问题，方便还原。
+&emsp;&emsp;翻看了一圈类似问题的解决方案，决定**删除D:Anaconda\ibrarnybin\pythoncom38.dll文**，再次打开jupyter notebook，一切正常。建**大家先将文件放到回收**里，防止删除后还是出问题，方便还原。
