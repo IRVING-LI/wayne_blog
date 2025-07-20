@@ -16,3 +16,17 @@
 .markdown h3 {
   @apply text-2xl mt-8 mb-4 leading-snug;
 }
+
+.markdown pre {
+  @apply p-4 rounded-md overflow-auto;
+  background-color: #f6f8fa;
+  font-size: 0.85em;
+  line-height: 1.45;
+}
+
+.markdown code {
+  @apply text-sm;
+  font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+  white-space: pre;
+  word-break: normal;
+}

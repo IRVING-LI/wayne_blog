@@ -2,7 +2,7 @@
 title: "用React + Next.js + Cursor打造属于自己的博客并部署到Netlify"
 excerpt: "本文将手把手教你如何基于Next.js官方博客模板，通过Cursor AI辅助开发，快速搭建一个高颜值、可扩展的个人博客，并免费部署到Netlify，实现真正的全栈博客体验。"
 coverImage: "/assets/blog/images/blog.png"
-date: "2024-01-20T10:00:00.000Z"
+date: "2025-01-20T10:00:00.000Z"
 author:
   name: Wayne
   picture: "/assets/blog/authors/headPic.jpg"
