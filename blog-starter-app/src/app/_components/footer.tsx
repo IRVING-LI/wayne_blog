@@ -16,6 +16,14 @@ export function Footer() {
           >
             商务合作
           </a>
+            <a
+              href="https://blog.csdn.net/qq_46686675?spm=1000.2115.3001.5343"
+              className="mx-3 font-bold hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              我的CSDN博客
+            </a>
           </div>
         </div>
       </Container>
